@@ -136,7 +136,7 @@
 \renewcommand{\theequation}{\thechapter.\arabic{equation}}
 
 % -- Header & Footer ------------------------------------------
-\setlength{\headheight}{32pt}  % ruang untuk logo di header
+\setlength{\headheight}{40pt}  % ruang untuk logo di header
 \pagestyle{fancy}
 \fancyhf{}
 \fancyfoot[C]{\thepage}
@@ -148,15 +148,15 @@
   \fancyhf{}
   \ifnum\StyleHeaderFooter=2
     % Gaya 2: PENS (Gambar 2)
-    \fancyhead[LO,LE]{\includegraphics[height=1.0cm]{assets/pens/logo_pens.png}}
-    \fancyhead[RO,RE]{\fontsize{8}{10}\bfseries\selectfont POLITEKNIK ELEKTRONIKA NEGERI SURABAYA\rule[-3mm]{0pt}{0pt}}
+    \fancyhead[LO,LE]{\raisebox{-0.2cm}{\includegraphics[height=1.0cm]{assets/pens/logo_pens.png}}}
+    \fancyhead[C]{\raisebox{1.5mm}{\fontsize{8}{10}\selectfont POLITEKNIK ELEKTRONIKA NEGERI SURABAYA}\rule[-3mm]{0pt}{0pt}}
     \renewcommand{\headrulewidth}{1.5pt}
-    \fancyfoot[LO,LE]{\fontsize{8}{10}\bfseries\selectfont LAPORAN PRAKTIK KERJA~-~\MakeUppercase{\NamaPerusahaan}}
+    \fancyfoot[LO,LE]{\fontsize{8}{10}\selectfont LAPORAN KERJA PRAKTIK~-~\MakeUppercase{\NamaPerusahaan}}
     \fancyfoot[RO,RE]{\fontsize{8}{10}\selectfont\thepage}
     \renewcommand{\footrulewidth}{1.5pt}
   \else
     % Gaya 1: Simple (Gambar 1)
-    \fancyhead[C]{\fontsize{10}{12}\bfseries\selectfont LAPORAN PRAKTIK KERJA\rule[-3mm]{0pt}{0pt}}
+    \fancyhead[C]{\fontsize{10}{12}\bfseries\selectfont LAPORAN KERJA PRAKTIK\rule[-3mm]{0pt}{0pt}}
     \renewcommand{\headrulewidth}{1.5pt}
     \fancyfoot[C]{\fontsize{10}{12}\selectfont\thepage}
     \renewcommand{\footrulewidth}{1.5pt}
