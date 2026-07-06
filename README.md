@@ -161,6 +161,36 @@ make clean      # hapus build/ saja
 make cleanall   # hapus build/ + output/
 ```
 
+## Pilihan Gaya Layout (Header/Footer)
+
+Template ini menyediakan 2 macam gaya header dan footer yang bisa Anda pilih. 
+Untuk mengubahnya, buka file `config/variables.tex` lalu ubah angka pada variabel `\StyleHeaderFooter`:
+
+```latex
+% -- Gaya Header & Footer (Pilih salah satu) -------------------
+% 1 = Simple (Laporan kerja praktik, tengah)
+% 2 = PENS (Logo PENS, Nama Perusahaan, dll)
+\newcommand{\StyleHeaderFooter}{1}
+```
+
+### Gaya 1 (Simple)
+Gaya standar yang sederhana dengan posisi teks di tengah.
+
+**Header:**  
+![Header Gaya 1](assets/layout/header1.png)
+
+**Footer:**  
+![Footer Gaya 1](assets/layout/footer1.png)
+
+### Gaya 2 (PENS)
+Gaya dengan logo PENS di bagian header, serta nama perusahaan di footer.
+
+**Header:**  
+![Header Gaya 2](assets/layout/header2.png)
+
+**Footer:**  
+![Footer Gaya 2](assets/layout/footer2.png)
+
 ## Jumlah Mahasiswa
 
 File `config/variables.tex` mendukung 1 sampai 3 mahasiswa per buku:
