@@ -1,0 +1,48 @@
+%============================================================
+% HALAMAN JUDUL DALAM BUKU KP
+% Header/footer ditangani oleh pagestyle kpruler.
+% Mendukung 1, 2, atau 3 mahasiswa.
+%============================================================
+\thispagestyle{empty}
+
+\begin{center}
+  \vspace{0.3cm}
+
+  {\fontsize{10}{13}\bfseries LAPORAN PRAKTIK KERJA\par}
+  \vspace{1cm}
+
+  \begin{minipage}{0.92\textwidth}
+    \centering
+    {\fontsize{10}{13}\bfseries\MakeUppercase{\JudulKP}\par}
+  \end{minipage}
+  
+  \vspace{0.8cm}
+  {\fontsize{10}{13}\bfseries Periode \PeriodeKP\par}
+
+  \vfill
+
+  \includegraphics[height=5.5cm]{assets/pens/logo_pens.png}\par
+
+  \vfill
+
+  {\fontsize{10}{13}\itshape\selectfont Oleh:\par}
+  \vspace{0.3cm}
+
+  \begin{tabular}{@{}p{5.5cm}l@{}}
+    \bfseries\fontsize{10}{13}\selectfont \NamaMahasiswaSatu & \bfseries\fontsize{10}{13}\selectfont NRP. \NRPSatu \\
+    \ifcsvoid{NamaMahasiswaDua}{}{%
+      \bfseries\fontsize{10}{13}\selectfont \NamaMahasiswaDua & \bfseries\fontsize{10}{13}\selectfont NRP. \NRPDua \\
+    }
+    \ifcsvoid{NamaMahasiswaTiga}{}{%
+      \bfseries\fontsize{10}{13}\selectfont \NamaMahasiswaTiga & \bfseries\fontsize{10}{13}\selectfont NRP. \NRPTiga \\
+    }
+  \end{tabular}
+
+  \vfill
+
+  {\fontsize{10}{13}\bfseries \MakeUppercase{\JenjangProdi} \MakeUppercase{\NamaProdi}\par}
+  {\fontsize{10}{13}\bfseries \MakeUppercase{\NamaDepartemen}\par}
+  {\fontsize{10}{13}\bfseries POLITEKNIK ELEKTRONIKA NEGERI SURABAYA\par}
+  {\fontsize{10}{13}\bfseries \TahunKP\par}
+
+\end{center}
