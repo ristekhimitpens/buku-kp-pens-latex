@@ -1,0 +1,36 @@
+%============================================================
+% HALAMAN ABSTRAK  (ringkasan dalam Bahasa Indonesia)
+% Isi: latar belakang, tujuan KP, kegiatan yang dilakukan,
+%      hasil, dan manfaat yang diperoleh.
+%============================================================
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{ABSTRAK}
+\begin{center}
+  {\fontsize{12}{15}\bfseries ABSTRAK\par}
+\end{center}
+\vspace{12pt}
+
+Laporan ini membahas pelaksanaan Kerja Praktik yang dilakukan di PT. Sinergi Dimensi
+Informatika (SINDIKA), dengan fokus pada pengembangan sistem monitoring infrastruktur
+kelistrikan `Voltra' dan library backend Nedo.AspNet.Request.Validation. Penulis terlibat
+langsung dalam implementasi logika bisnis pemantauan aset kelistrikan pada sistem Voltra,
+mencakup kalkulasi Health Index, Critical Index, dan Risk Index sebagai dasar klasifikasi
+status aset (Good, Warning, Critical). Selain itu, penulis juga mengembangkan fitur
+manajemen tiket insiden yang terintegrasi dengan mekanisme auto-close berbasis event,
+modul analitik finansial untuk perhitungan cost avoidance dan risk cost projection,
+evaluasi keusangan aset (obsolescence) beserta prediksi Remaining Useful Life (RUL),
+serta sistem pelaporan otomatis berbasis PDF. Sistem Voltra dibangun menggunakan pendekatan arsitektur microservices dengan RabbitMQ
+sebagai message broker untuk komunikasi asinkron, MQTT untuk ingesti data sensor dari
+perangkat lapangan, Redis sebagai cache dan pub/sub engine, serta kombinasi InfluxDB dan
+PostgreSQL untuk penyimpanan data time-series dan relasional. Di luar pengembangan Voltra,
+penulis turut merancang dan mengembangkan library Nedo.AspNet.Request.Validation, sebuah
+pustaka validasi input berbasis attribute untuk aplikasi ASP.NET Core yang bertujuan
+menyediakan mekanisme validasi terpusat, konsisten, dan dapat digunakan kembali di seluruh
+ekosistem backend SINDIKA, lengkap dengan standarisasi kode error dan dukungan multi-bahasa
+(localization) pada respons validasi API. Melalui pendekatan profesional dan kolaboratif selama kerja praktik, kegiatan ini memberikan
+pemahaman mendalam mengenai penerapan arsitektur microservices, komunikasi asinkron, serta
+praktik pengembangan library internal dalam skenario industri nyata.
+
+\vspace{0.8cm}
+\noindent\textbf{Kata Kunci:} Voltra, Microservices, RabbitMQ, MQTT, Health Index, Risk Index, Library Validation, ASP.NET Core, Predictive Maintenance

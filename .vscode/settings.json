@@ -1,0 +1,42 @@
+{
+  // -- LaTeX Workshop: DOKUMENTASI SAJA ----------------------------
+  //
+  // File ini TIDAK akan aktif jika VS Code dibuka dari folder parent.
+  // Setting LaTeX Workshop bersifat window-scoped, bukan resource-scoped,
+  // sehingga tidak bisa berbeda per-folder dalam satu workspace.
+  //
+  // CARA YANG BENAR: Tambahkan config di bawah ke User Settings global.
+  // Buka: Ctrl+Shift+P → "Preferences: Open User Settings (JSON)"
+  //
+  // Lihat README.md section "Setup VS Code" untuk instruksi lengkap.
+  // -----------------------------------------------------------------
+
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": [
+        "-pdf",
+        "-outdir=build",
+        "-auxdir=build",
+        "-interaction=nonstopmode",
+        "-synctex=1",
+        "%DOC%"
+      ]
+    }
+  ],
+
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "latexmk (build/)",
+      "tools": ["latexmk"]
+    }
+  ],
+
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.latex.autoClean.run": "never",
+  "latex-workshop.synctex.afterBuild.enabled": true,
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.view.pdf.ref.viewer": "auto",
+  "latex-workshop.latex.outDir": "build"
+}

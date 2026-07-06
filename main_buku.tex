@@ -1,0 +1,120 @@
+%============================================================
+% RUNNER: BUKU KERJA PRAKTIK
+% Compile: make buku
+%
+% Struktur halaman (semua prelim = romawi):
+%  i   Sampul (tidak ditampilkan)
+%  ii  Halaman kosong
+%  iii Halaman Judul Dalam
+%  iv  Halaman kosong
+%  v   Lembar Pengesahan Internal (PENS)
+%  vi  Halaman kosong
+%  vii Lembar Pengesahan Instansi
+%  viii Halaman kosong
+%  ix  Abstrak
+%  x   Halaman kosong
+%  xi  Kata Pengantar
+%  xii Halaman kosong (jika perlu)
+%  xiii Daftar Isi
+%  ... dst (setiap konten baru mulai halaman ganjil)
+%  --- Bab 1 arabic 1
+%============================================================
+
+\documentclass[10pt, a5paper, twoside, openright, fleqn]{report}
+
+\input{config/variables}
+\input{config/packages}
+\input{config/formatting}
+\input{formats/format_buku}
+
+%============================================================
+\begin{document}
+%============================================================
+
+\hypersetup{pageanchor=false}
+
+% -- Halaman i: Cover (romawi i, tanpa header/footer) -----
+% PENTING: kpruler diset GLOBAL sebelum cover.
+% \begin{titlepage} di cover_buku.tex otomatis override dengan \thispagestyle{empty}
+% sehingga cover tidak punya header/footer.
+% Setelah \end{titlepage}, global pagestyle tetap kpruler.
+\pagenumbering{roman}
+\setcounter{page}{1}
+\pagestyle{kpruler}
+\input{formats/cover_buku}
+
+% -- Halaman ii: Blank, dibuat otomatis oleh \cleardoublepage -----
+% (pakai mekanisme yg SAMA persis dgn hal. iv yang sudah terbukti benar)
+\makeatletter\@mainmatterfalse\makeatother
+\cleardoublepage
+
+% -- Halaman iii: Halaman Judul Dalam (romawi iii, tanpa header/footer)
+\input{formats/halaman_judul}  % TIDAK ada \newpage lagi di dalam file ini
+
+% -- Halaman iii: Lembar Pengesahan Internal ------------------
+% (halaman ii = blank dengan kpruler)
+\cleardoublepage
+\input{formats/pengesahan_internal}
+
+% -- Halaman vii: Lembar Pengesahan Instansi ------------------
+% (halaman vi = blank)
+\cleardoublepage
+\input{formats/pengesahan_instansi}
+
+% -- Halaman ix: Abstrak ---------------------------------------
+% (halaman viii = blank)
+\cleardoublepage
+\makeatletter\@mainmattertrue\makeatother
+\input{pages/abstrak}
+
+% -- Halaman xi: Kata Pengantar --------------------------------
+% (halaman x = blank)
+\cleardoublepage
+\input{pages/kata_pengantar}
+
+% -- Daftar Isi, Gambar, Tabel --------------------------------
+\cleardoublepage
+\addcontentsline{toc}{chapter}{DAFTAR ISI}
+\tableofcontents
+
+\cleardoublepage
+\begingroup
+\renewcommand*{\addvspace}[1]{}
+\listoffigures
+\endgroup
+\addcontentsline{toc}{chapter}{DAFTAR GAMBAR}
+
+\cleardoublepage
+\begingroup
+\renewcommand*{\addvspace}[1]{}
+\listoftables
+\endgroup
+\addcontentsline{toc}{chapter}{DAFTAR TABEL}
+
+% -- Bab 1+: Arabic dari 1, pageanchor aktif ------------------
+\cleardoublepage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\hypersetup{pageanchor=true}
+\pagestyle{kpruler}
+
+\newcommand{\SistematikaFile}{pages/sistematika_kp}
+\input{chapters/bab1}
+\input{chapters/bab2}
+\input{chapters/bab3}
+\input{chapters/bab4}
+\input{chapters/bab5}
+
+% -- Daftar Pustaka -------------------------------------------
+\cleardoublepage
+\addcontentsline{toc}{chapter}{DAFTAR PUSTAKA}
+\renewcommand{\bibname}{DAFTAR PUSTAKA}
+\bibliographystyle{refs/IEEEtranN}
+\bibliography{refs/references}
+
+% -- Lampiran -------------------------------------------------
+\input{pages/lampiran}
+
+%============================================================
+\end{document}
+%============================================================
