@@ -1,0 +1,293 @@
+%============================================================
+% FORMATTING: BASE LAYER (SHARED)
+% Aturan yang 100% sama di semua dokumen KP.
+% Aturan per-dokumen (geometry, spacing) ada di formats/format_buku.tex
+% yang di-input SETELAH file ini di main_buku.tex.
+%============================================================
+
+% -- Warna Institusi ------------------------------------------
+\definecolor{pensorange}{RGB}{255, 149, 0}   % Orange KP (#FF9500)
+\definecolor{penskuning}{RGB}{255, 193, 7} % Kuning/emas garis cover
+
+% -- Lebar Judul di Cover & Halaman Judul (harus sama) ---------
+% 95mm = 0.92 * textwidth_normal (0.92 * 103mm = 94.76mm)
+\newlength{\LebarJudulKP}
+\setlength{\LebarJudulKP}{90mm}  % Silahkan diganti sesuai keinginan
+
+% -- Indentasi & Paragraf -------------------------------------
+% \parindent TIDAK diset di sini -- diset di formats/format_buku.tex
+\setlength{\parskip}{0pt}
+
+% -- Persamaan Matematika -------------------------------------
+\setlength{\mathindent}{10mm}
+\setlength{\abovedisplayskip}{-15pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+
+% Nomor persamaan dicetak tebal-miring
+\makeatletter
+\renewcommand{\tagform@}[1]{\maketag@@@{\bfseries\itshape(#1)\@@italiccorr}}
+
+% -- Macro: render fontsize tetap, cuma shrink kalau kepanjangan --
+% Usage: \fitline{<max-width>}{<content>}
+\newcommand{\fitline}[2]{%
+  \setbox0=\hbox{{#2}}%
+  \ifdim\wd0>#1
+    \resizebox{#1}{!}{{#2}}%
+  \else
+    {#2}%
+  \fi
+}
+\makeatother
+
+% -- Format Judul Bab -----------------------------------------
+% Mulai dari batas margin atas (spacing before = 0pt)
+% Judul bab 1 spasi (12pt) di bawah tulisan BAB
+% Kalimat awal mulai 2 spasi (24pt) di bawah judul bab
+\titleformat{\chapter}[display]
+{\centering\fontsize{12}{15}\bfseries}
+{\MakeUppercase{\chaptertitlename} \thechapter}
+{0pt}
+{\MakeUppercase}
+\titlespacing*{\chapter}{0pt}{0pt}{12pt}
+
+% -- Format Judul Subbab (Section) ----------------------------
+\titleformat{\section}
+{\fontsize{10}{13}\bfseries}
+{\thesection}
+{1em}
+{}
+\titlespacing*{\section}{0pt}{10pt}{3pt}
+
+% -- Format Judul Sub-subbab (Subsection) ---------------------
+\titleformat{\subsection}
+{\fontsize{10}{13}\bfseries}
+{\thesubsection}
+{1em}
+{}
+\titlespacing*{\subsection}{0pt}{8pt}{3pt}
+
+% -- Format Judul Sub-sub-subbab (Subsubsection) --------------
+\titleformat{\subsubsection}
+{\fontsize{10}{13}\bfseries}
+{}
+{0pt}
+{}
+\titlespacing*{\subsubsection}{0pt}{3pt}{2pt}
+
+% -- Batas Penomoran dan Daftar Isi ---------------------------
+% 0 = Chapter, 1 = Section, 2 = Subsection
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+
+% -- Caption Gambar -------------------------------------------
+\captionsetup[figure]{
+  labelfont     = {bf},
+  textfont      = {bf},
+  font          = {normalsize},
+  justification = centering,
+  skip          = 12pt, % Jarak 1 spasi
+  name          = Gambar,
+  labelsep      = space
+}
+
+% -- Caption Tabel --------------------------------------------
+\captionsetup[table]{
+  labelfont     = {bf},
+  textfont      = {bf},
+  font          = {normalsize},
+  justification = centering,
+  skip          = 12pt, % Jarak 1 spasi
+  position      = above,
+  name          = Tabel,
+  labelsep      = space
+}
+\renewcommand{\tablename}{Tabel}
+
+% -- Format Default Tabularray --------------------------------
+\SetTblrInner{
+  hlines, vlines,
+  row{1} = {bg=gray!20, font=\bfseries, halign=c},
+  rowhead = 1,
+}
+
+\SetTblrInner[longtblr]{
+  hlines, vlines,
+  row{1} = {bg=gray!20, font=\bfseries, halign=c},
+  rowhead = 1,
+}
+
+% -- Kustomisasi Khusus longtblr ------------------------------
+\DefTblrTemplate{caption-sep}{default}{\space}
+\SetTblrStyle{caption-tag}{font=\small\itshape}
+\SetTblrStyle{caption-text}{font=\small\itshape}
+\SetTblrStyle{caption-halign}{c}
+
+\DefTblrTemplate{contfoot-text}{default}{}
+\DefTblrTemplate{conthead-text}{default}{}
+\DefTblrTemplate{capcont}{default}{}
+\DefTblrTemplate{contfoot}{default}{}
+\DefTblrTemplate{conthead}{default}{}
+
+% -- Penomoran Gambar/Tabel/Persamaan per Bab -----------------
+\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
+\renewcommand{\thetable}{\thechapter.\arabic{table}}
+\renewcommand{\theequation}{\thechapter.\arabic{equation}}
+
+% -- Header & Footer ------------------------------------------
+\setlength{\headheight}{32pt}  % ruang untuk logo di header
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+
+% Pagestyle kpruler dengan 2 macam gaya (Simple & PENS)
+\fancypagestyle{kpruler}{
+  \fancyhf{}
+  \ifnum\StyleHeaderFooter=2
+    % Gaya 2: PENS (Gambar 2)
+    \fancyhead[LO,LE]{\includegraphics[height=1.0cm]{assets/pens/logo_pens.png}}
+    \fancyhead[RO,RE]{\fontsize{8}{10}\bfseries\selectfont POLITEKNIK ELEKTRONIKA NEGERI SURABAYA\rule[-3mm]{0pt}{0pt}}
+    \renewcommand{\headrulewidth}{1.5pt}
+    \fancyfoot[LO,LE]{\fontsize{8}{10}\bfseries\selectfont LAPORAN PRAKTIK KERJA~-~\MakeUppercase{\NamaPerusahaan}}
+    \fancyfoot[RO,RE]{\fontsize{8}{10}\selectfont\thepage}
+    \renewcommand{\footrulewidth}{1.5pt}
+  \else
+    % Gaya 1: Simple (Gambar 1)
+    \fancyhead[C]{\fontsize{10}{12}\bfseries\selectfont LAPORAN PRAKTIK KERJA\rule[-3mm]{0pt}{0pt}}
+    \renewcommand{\headrulewidth}{1.5pt}
+    \fancyfoot[C]{\fontsize{10}{12}\selectfont\thepage}
+    \renewcommand{\footrulewidth}{1.5pt}
+  \fi
+}
+
+% Redefine plain to copy kpruler for consistency on chapter start pages
+\makeatletter
+\let\ps@plain\ps@kpruler
+\makeatother
+
+% -- Lingkungan Kutipan Panjang (lebih dari 2 baris) -----------
+\newenvironment{kutipanpanjang}{%
+  \begin{list}{}{%
+      \setlength{\leftmargin}{10mm}
+      \setlength{\rightmargin}{10mm}
+      \setlength{\topsep}{6pt}
+      \setlength{\itemsep}{0pt}
+      \setlength{\parsep}{0pt}
+    }
+    \item\fontsize{9}{11}\selectfont\ignorespaces
+    }{%
+    \unskip
+  \end{list}
+}
+
+% -- Hyperref -------------------------------------------------
+\hypersetup{
+  colorlinks  = true,
+  linkcolor   = black,
+  citecolor   = black,
+  urlcolor    = black,
+  plainpages  = false,   % cegah duplicate anchor saat roman->arabic reset
+  pdftitle    = {\JudulKP},
+  pdfauthor   = {\NamaMahasiswaSatu}
+}
+
+% -- Nama Bahasa Indonesia ------------------------------------
+\renewcommand{\contentsname}{DAFTAR ISI}
+\renewcommand{\listfigurename}{DAFTAR GAMBAR}
+\renewcommand{\listtablename}{DAFTAR TABEL}
+\renewcommand{\bibname}{DAFTAR PUSTAKA}
+\renewcommand{\appendixname}{LAMPIRAN}
+\renewcommand{\chaptername}{BAB}
+
+% -- Judul Daftar Isi/Gambar/Tabel: 12pt, Bold, Center --------
+\renewcommand{\cfttoctitlefont}{\hfill\fontsize{12}{15}\bfseries\MakeUppercase}
+\renewcommand{\cftaftertoctitle}{\hfill\null}
+
+\renewcommand{\cftloftitlefont}{\hfill\fontsize{12}{15}\bfseries\MakeUppercase}
+\renewcommand{\cftafterloftitle}{\hfill\null}
+
+\renewcommand{\cftlottitlefont}{\hfill\fontsize{12}{15}\bfseries\MakeUppercase}
+\renewcommand{\cftafterlottitle}{\hfill\null}
+
+\setlength{\cftbeforetoctitleskip}{0pt}
+\setlength{\cftbeforeloftitleskip}{0pt}
+\setlength{\cftbeforelottitleskip}{0pt}
+\setlength{\cftaftertoctitleskip}{10pt}
+\setlength{\cftafterloftitleskip}{10pt}
+\setlength{\cftafterlottitleskip}{10pt}
+
+% -- Prefix "Gambar" dan "Tabel" di LOF/LOT -------------------
+\renewcommand{\cftfigpresnum}{Gambar }
+\renewcommand{\cfttabpresnum}{Tabel }
+\addtolength{\cftfignumwidth}{3.5em}
+\addtolength{\cfttabnumwidth}{2.5em}
+
+% -- Titik-titik di Daftar Isi --------------------------------
+\renewcommand{\cftdotsep}{1.5}
+
+% -- Spasi Konsisten di Daftar Isi ----------------------------
+\setlength{\cftbeforechapskip}{0pt}
+\setlength{\cftbeforesecskip}{0pt}
+\setlength{\cftbeforesubsecskip}{0pt}
+\setlength{\cftbeforefigskip}{0pt}
+\setlength{\cftbeforetabskip}{0pt}
+
+% -- Font Level Bab: Bold -------------------------------------
+\renewcommand{\cftchapfont}{\bfseries}
+\renewcommand{\cftchappagefont}{\bfseries}
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+
+% -- Font Level Section: Normal -------------------------------
+\renewcommand{\cftsecfont}{\normalfont}
+\renewcommand{\cftsecpagefont}{\normalfont}
+
+% -- Prefix "BAB" di Daftar Isi -------------------------------
+\renewcommand{\cftchappresnum}{BAB }
+\addtolength{\cftchapnumwidth}{2.5em}
+
+% -- Jarak (Spasi) Atas/Bawah Gambar dan Tabel ----------------
+\setlength{\intextsep}{10pt}
+\setlength{\textfloatsep}{10pt}
+
+\setlength{\bibsep}{3pt}
+
+% -- Halaman Kosong -------------------------------------------
+% Halaman kosong pada cetak bolak-balik diberi keterangan
+\makeatletter
+\newif\if@mainmatter
+\@mainmatterfalse
+\def\cleardoublepage{%
+  \clearpage
+  \if@twoside
+    \ifodd\c@page\else
+      \hbox{}
+      \vspace*{\fill}
+      \begin{center}
+        \textit{Halaman ini sengaja dikosongkan}
+      \end{center}
+      \vspace{\fill}
+      \thispagestyle{kpruler}
+      \newpage
+      \if@twocolumn\hbox{}\newpage\fi
+    \fi
+  \fi
+}
+
+% -- Paksa Halaman Ganjil -------------------------------------
+\newcommand{\cleartooddpage}{%
+  \clearpage
+  \ifodd\c@page\else
+    \hbox{}
+    \vspace*{\fill}
+    \begin{center}
+      \textit{Halaman ini sengaja dikosongkan}
+    \end{center}
+    \vspace{\fill}
+    \thispagestyle{fancy}
+    \newpage
+  \fi
+}
+\makeatother

@@ -1,0 +1,89 @@
+%============================================================
+% HALAMAN SAMPUL BUKU KP (Cover Berwarna)
+% Layout mengikuti Template_Buku_PA_PENS_LaTeX:
+%   - Header putih: logo PENS (kiri) + "KERJA PRAKTIK" (kanan, orange)
+%   - Body orange: judul kapital bold, Oleh:, mahasiswa, pembimbing, footer
+% Mendukung 1, 2, atau 3 mahasiswa.
+%============================================================
+\begin{titlepage}
+  \newgeometry{top=0pt, bottom=0pt, left=0pt, right=0pt}
+  \setlength{\fboxsep}{0pt}
+
+  % -- Bagian 1: Header Putih ----------------------------------------
+  \noindent\pagecolor{white}
+  \colorbox{white}{%
+    \begin{minipage}[c][5.36cm][c]{\paperwidth}
+      \hspace*{1.2cm}
+      \begin{minipage}[t]{2.8cm}
+        \vspace{0pt} % Set baseline at top
+        \raisebox{-\height}{\includegraphics[width=2.5cm, keepaspectratio]{assets/pens/logo_pens.png}}
+      \end{minipage}
+      \hfill
+      \begin{minipage}[t]{5cm}
+        \vspace{0pt} % Set baseline at top
+        \raggedleft
+        \vspace{0.25cm}
+        \raisebox{-\height}{\color{black}\fontsize{10}{13}\bfseries\selectfont KERJA PRAKTIK}
+      \end{minipage}
+      \hspace*{1.2cm}
+    \end{minipage}
+  }\par\nointerlineskip
+
+  % -- Bagian 2: Body Orange (latar belakang penuh) ------------------
+  \noindent
+  \colorbox{pensorange}{%
+    \begin{minipage}[t][\dimexpr\paperheight-5.36cm\relax][t]{\paperwidth}
+      \color{black}
+      \begin{center}
+
+        \vspace{0.8cm}
+
+        % Judul: kapital, bold (TANPA italic), kata tidak dipotong
+        \begin{minipage}{\LebarJudulKP}
+          \centering
+          \hyphenpenalty=10000
+          \exhyphenpenalty=10000
+          \fontsize{10}{13}\bfseries\selectfont
+          \MakeUppercase{\JudulKP}
+        \end{minipage}
+        \par
+
+        \vfill
+
+        % Blok Penulis
+        {\fontsize{10}{13}\itshape\selectfont Oleh:\par}
+        \vspace{0.2cm}
+
+        \begin{tabular}{@{}p{5.5cm}l@{}}
+          \bfseries\fontsize{10}{13}\selectfont \NamaMahasiswaSatu & \bfseries\fontsize{10}{13}\selectfont NRP. \NRPSatu \\
+          \ifcsvoid{NamaMahasiswaDua}{}{%
+            \bfseries\fontsize{10}{13}\selectfont \NamaMahasiswaDua & \bfseries\fontsize{10}{13}\selectfont NRP. \NRPDua \\
+          }
+          \ifcsvoid{NamaMahasiswaTiga}{}{%
+            \bfseries\fontsize{10}{13}\selectfont \NamaMahasiswaTiga & \bfseries\fontsize{10}{13}\selectfont NRP. \NRPTiga \\
+          }
+        \end{tabular}
+
+        \vfill
+
+        % Dosen Pembimbing
+        {\fontsize{10}{13}\itshape\selectfont Dosen Pembimbing:\par}
+        \vspace{0.15cm}
+        {\fontsize{10}{13}\bfseries\selectfont \NamaPembimbing\par}
+        {\fontsize{10}{13}\bfseries\selectfont NIP. \NIPPembimbing\par}
+
+        \vfill
+
+        % Footer: institusi
+        {\fontsize{10}{13}\bfseries\selectfont \MakeUppercase{\JenjangProdi} \MakeUppercase{\NamaProdi}\par}
+        {\fontsize{10}{13}\bfseries\selectfont \MakeUppercase{\NamaDepartemen}\par}
+        {\fontsize{10}{13}\bfseries\selectfont POLITEKNIK ELEKTRONIKA NEGERI SURABAYA\par}
+        {\fontsize{10}{13}\bfseries\selectfont \TahunKP\par}
+        \vspace{1.5cm}
+
+  \end{center}
+    \end{minipage}%
+  }
+\end{titlepage}
+\restoregeometry
+\pagecolor{white}
