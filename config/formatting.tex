@@ -52,12 +52,25 @@
 {\MakeUppercase}
 \titlespacing*{\chapter}{0pt}{0pt}{12pt}
 
+% -- Auto-selaraskan indentasi paragraf pertama dengan huruf judul (bukan nomor) --
+\newsavebox{\KotakLabelJudul}
+\newdimen\LebarLabelJudul
+\newcommand{\SelaraskanIndentAsli}[1]{%
+  \sbox{\KotakLabelJudul}{#1}%
+  \global\LebarLabelJudul=\wd\KotakLabelJudul
+  \global\advance\LebarLabelJudul by 1em
+  \xdef\ParindentAsliTersimpan{\the\parindent}%
+  \global\parindent=\LebarLabelJudul
+  \global\everypar{\parindent=\ParindentAsliTersimpan\relax\global\everypar{}}%
+}
+
 % -- Format Judul Subbab (Section) ----------------------------
 \titleformat{\section}
 {\fontsize{10}{13}\bfseries}
 {\thesection}
 {1em}
 {}
+[\SelaraskanIndentAsli{\thesection}]
 \titlespacing*{\section}{0pt}{10pt}{3pt}
 
 % -- Format Judul Sub-subbab (Subsection) ---------------------
@@ -66,14 +79,16 @@
 {\thesubsection}
 {1em}
 {}
+[\SelaraskanIndentAsli{\thesubsection}]
 \titlespacing*{\subsection}{0pt}{8pt}{3pt}
 
 % -- Format Judul Sub-sub-subbab (Subsubsection) --------------
 \titleformat{\subsubsection}
 {\fontsize{10}{13}\bfseries}
+{\thesubsubsection}
+{1em}
 {}
-{0pt}
-{}
+[\SelaraskanIndentAsli{\thesubsubsection}]
 \titlespacing*{\subsubsection}{0pt}{3pt}{2pt}
 
 % -- Batas Penomoran dan Daftar Isi ---------------------------
