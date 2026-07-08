@@ -82,13 +82,14 @@
 [\SelaraskanIndentAsli{\thesubsection}]
 \titlespacing*{\subsection}{0pt}{8pt}{3pt}
 
+% -- Format Judul Sub-sub-subbab (Subsubsection) --------------
+% Tanpa nomor (secnumdepth=2) — heading ringan, label dikosongkan.
 \titleformat{\subsubsection}
 {\fontsize{10}{13}\bfseries}
-{\thesubsubsection}
-{1em}
 {}
-[\SelaraskanIndentAsli{\thesubsubsection}]
-\titlespacing*{\subsubsection}{0pt}{3pt}{2pt}
+{0pt}
+{}
+\titlespacing*{\subsubsection}{\parindent}{3pt}{2pt}
 
 % -- Batas Penomoran dan Daftar Isi ---------------------------
 % 0 = Chapter, 1 = Section, 2 = Subsection
