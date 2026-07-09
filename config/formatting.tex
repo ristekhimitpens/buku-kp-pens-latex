@@ -42,6 +42,9 @@
 \makeatother
 
 % -- Format Judul Bab -----------------------------------------
+\renewcommand{\thechapter}{\Roman{chapter}}
+\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
+
 % Mulai dari batas margin atas (spacing before = 0pt)
 % Judul bab 1 spasi (12pt) di bawah tulisan BAB
 % Kalimat awal mulai 2 spasi (24pt) di bawah judul bab
@@ -146,9 +149,9 @@
 \DefTblrTemplate{conthead}{default}{}
 
 % -- Penomoran Gambar/Tabel/Persamaan per Bab -----------------
-\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
-\renewcommand{\thetable}{\thechapter.\arabic{table}}
-\renewcommand{\theequation}{\thechapter.\arabic{equation}}
+\renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
+\renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}
+\renewcommand{\theequation}{\arabic{chapter}.\arabic{equation}}
 
 % -- Header & Footer ------------------------------------------
 \setlength{\headheight}{40pt}  % ruang untuk logo di header
@@ -237,8 +240,11 @@
 % -- Prefix "Gambar" dan "Tabel" di LOF/LOT -------------------
 \renewcommand{\cftfigpresnum}{Gambar }
 \renewcommand{\cfttabpresnum}{Tabel }
-\addtolength{\cftfignumwidth}{3.5em}
-\addtolength{\cfttabnumwidth}{2.5em}
+% numwidth harus cukup lebar untuk menampung prefix terpanjang
+% agar baris kedua (wrap) sejajar dengan teks, bukan kembali ke kiri.
+% "Gambar 4.12 " ≈ 7em; "Tabel 4.13 " ≈ 6em
+\setlength{\cftfignumwidth}{7.5em}
+\setlength{\cfttabnumwidth}{6.5em}
 
 % -- Titik-titik di Daftar Isi --------------------------------
 \renewcommand{\cftdotsep}{1.5}
@@ -261,7 +267,11 @@
 
 % -- Prefix "BAB" di Daftar Isi -------------------------------
 \renewcommand{\cftchappresnum}{BAB }
-\addtolength{\cftchapnumwidth}{2.5em}
+% "BAB IV " ≈ 5em -- set numwidth eksplisit agar wrap sejajar teks
+\setlength{\cftchapnumwidth}{5.5em}
+% Indent section/subsection dikembalikan ke default agar menjorok bertingkat
+% \setlength{\cftsecindent}{1.5em}
+% \setlength{\cftsubsecindent}{3.8em}
 
 % -- Jarak (Spasi) Atas/Bawah Gambar dan Tabel ----------------
 \setlength{\intextsep}{10pt}
