@@ -10,50 +10,7 @@ Pasal **4.2.1 Susunan Laporan** dan **4.2.2 Ketentuan Penulisan Laporan Kerja Pr
 > Salinan ini ada di situs dosen PENS (sampul tertulis "Rev.01", isi dan header tertulis "Rev.02").
 > Selalu konfirmasi versi terbaru ke Koordinator KP prodi Anda.
 
-## Kesesuaian dengan Pedoman (Pasal 4.2.2)
-
-Status: ✅ sesuai, ⚠️ sesuai sebagian / perlu dicek, ❌ belum sesuai.
-
-| Aspek | Ketentuan pedoman | Template saat ini | Status |
-|---|---|---|---|
-| Kertas (1d) | A5 (148 × 210 mm), HVS 70/80 gram | A5 | ✅ |
-| Huruf (2b) | Times New Roman 10pt normal; tulisan BAB 12pt | 10pt, BAB 12pt | ✅ |
-| Spasi (2c) | 1 spasi (single) | single | ✅ |
-| Cetak (2d) | Bolak-balik; bagian awal (judul s.d. daftar lampiran) hanya sisi ganjil | twoside, halaman kosong di sisi genap | ✅ |
-| Margin (2e) | Atas 2,5; bawah 2; kiri/kanan 2,5/2 (ganjil), 2/2,5 (genap) cm | mirror 2,5/2 | ✅ |
-| Posisi BAB (3a) | "BAB n" dari batas margin atas, judul bab 1 spasi di bawahnya | sesuai | ✅ |
-| Nomor bab (3b) | Angka Arab: BAB 1, BAB 2, ... | BAB 1, BAB 2 | ✅ |
-| Judul bab (3c) | Kapital semua, bold, 12pt | sesuai | ✅ |
-| Jarak judul bab ke teks (3d) | 2 spasi (2 ketukan enter) | 12pt | ⚠️ tergantung tafsir "spasi" |
-| Judul sub-bab (3e, 3g) | Title Case, bold | contoh bab ditulis Title Case | ✅ |
-| Bab baru (3h) | Halaman ganjil + "Halaman ini sengaja dikosongkan" | sesuai | ✅ |
-| Paragraf (3i) | Masuk 1 tab; antar paragraf "jarak satu spasi" | indentasi 1 cm, tanpa jarak antar paragraf | ⚠️ tergantung tafsir "spasi" |
-| Nomor halaman awal (4a) | Romawi kecil, bawah tengah | sesuai | ✅ |
-| Nomor halaman judul & pengesahan (4b) | Tanpa nomor; nomor muncul mulai Abstrak (iii) | tanpa nomor; nomor muncul mulai Abstrak, tetapi Abstrak = ix karena halaman kosong ikut dihitung | ⚠️ perlu konfirmasi |
-| Nomor halaman isi (4c) | Arab, bawah tengah | bawah tengah (Gaya 1 & Gaya 2) | ✅ |
-| Header | Tidak diatur (hanya nomor halaman) | header "LAPORAN KERJA PRAKTIK" + garis | ⚠️ tambahan template |
-| Judul tabel (5b, 5c, 5e) | "Tabel 2.1:" bold, judul 10pt normal, di atas tabel, menjorok 1 cm kiri-kanan | sesuai (juga `longtblr`) | ✅ |
-| Isi tabel (5e) | Tidak lebih kecil dari 6pt | `\small` (±9pt), spasi 1 | ✅ |
-| Sumber tabel (5f) | Di bawah tabel, `Sumber: NamaPengarang, Judul Buku, TahunTerbit, Hal.`, 8pt | `\FontSumber` 8pt | ✅ |
-| Jarak judul tabel/gambar (5i, 6i) | 1 spasi | 12pt | ✅ |
-| Judul gambar (6b, 6c) | "Gambar 2.1:" bold (contoh: label dan judul bold), di bawah gambar, menjorok 1 cm | sesuai | ✅ |
-| Sumber gambar (6e) | Setelah judul gambar, 8pt | `\FontSumber` 8pt | ✅ |
-| Daftar pustaka (7) | Urut abjad; Nama, tahun, *judul* (miring), kota, penerbit | urut abjad, nama-tahun (`apalike`); urutan tertulis "Penerbit, Kota" | ⚠️ lihat catatan |
-| Urutan bagian awal (4.2.1) | Judul, Pengesahan PENS, Pengesahan Perusahaan, Abstrak (150-200 kata, 1,5 spasi), Daftar Isi, Kata Pengantar, Daftar Gambar, Daftar Tabel, Daftar Lampiran | sesuai; Abstrak 1,5 spasi (`\setstretch{1.5}`, sama dengan Buku PA), contoh 161 kata, 1 halaman | ✅ |
-| Lampiran wajib (4.2.1) | Rekap monitoring, 3 nilai, foto di lokasi KP, Biodata Penulis | Lampiran A-F + Daftar Lampiran (`pages/daftar_lampiran.tex`) | ✅ |
-| Struktur bab (4.2.1) | 4 bab: Pendahuluan, Gambaran Umum Perusahaan, Hasil Kegiatan KP, Kesimpulan dan Saran | 5 bab (versi prodi) | ⚠️ cek ketentuan prodi |
-
-**Catatan tafsir "spasi":** pedoman menyamakan 1 spasi dengan "1 ketukan enter" (3a, 3d). Jika
-diartikan secara literal, "2 spasi" di bawah judul bab = satu baris kosong (±12pt, seperti
-template sekarang) dan "1 spasi" = baris baru tanpa baris kosong. Jika diartikan sebagai jarak
-baris, nilainya menjadi 24pt. Konfirmasi ke Koordinator KP bila perlu.
-
-**Catatan daftar pustaka:** gaya `apalike` (bawaan LaTeX) menulis urutan "Penerbit, Kota",
-sedangkan pedoman 7a meminta "Kota, Penerbit". Selain urutan itu, format sudah sesuai (urut
-abjad, nama-tahun, judul miring). Sitasi di teks memakai gaya nama-tahun:
-`\citep{kunci}` menghasilkan "(Nama, 2021)" dan `\citet{kunci}` menghasilkan "Nama (2021)".
-
-### Caption, Isi Tabel & Sumber
+## Caption, Isi Tabel & Sumber
 
 | Elemen | Hasil | Diatur di |
 |---|---|---|
