@@ -38,7 +38,7 @@ buku-kp-pens-latex/
 |   |-- formatting.tex           # Aturan formatting shared
 |-- formats/
 |   |-- format_buku.tex          # Geometri A5, single spacing
-|   |-- cover_buku.tex           # Cover berwarna (orange)
+|   |-- cover_buku.tex           # Cover berwarna kuning PENS (Lampiran 3 pedoman)
 |   |-- halaman_judul.tex        # Halaman judul dalam
 |   |-- pengesahan_internal.tex  # Lembar pengesahan PENS
 |   |-- pengesahan_instansi.tex  # Lembar pengesahan perusahaan
