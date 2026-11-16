@@ -1,0 +1,15 @@
+%============================================================
+% TOGGLES: Boolean Switch Opsional Buku KP
+% Default: semua FALSE. Aktifkan di main_buku.tex
+% (setelah \input{config/toggles}).
+%============================================================
+
+% Sisipkan Lembar Pengesahan Internal (PENS) dalam bentuk PDF
+% yang sudah ditandatangani, menggantikan halaman hasil LaTeX.
+\newif\ifpengesahaninternalpdf  \pengesahaninternalpdffalse
+\newcommand{\FilePengesahanInternalPDF}{pages/pengesahan_internal_ttd.pdf}
+
+% Sisipkan Lembar Pengesahan Instansi (perusahaan) dalam bentuk
+% PDF yang sudah ditandatangani & distempel perusahaan.
+\newif\ifpengesahaninstansipdf  \pengesahaninstansipdffalse
+\newcommand{\FilePengesahanInstansiPDF}{pages/pengesahan_instansi_ttd.pdf}

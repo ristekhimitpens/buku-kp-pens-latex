@@ -1,0 +1,43 @@
+%============================================================
+% UKURAN FONT
+% Semua ukuran font template ada di sini, satu macro per
+% peruntukan. Ubah satu baris, berlaku di semua halaman yang
+% memakai peran tersebut. Ukuran yang sama tetapi peruntukannya
+% berbeda tetap punya macro sendiri, agar bisa diubah terpisah.
+%
+% Format: \fontsize{ukuran huruf}{jarak baris}\selectfont (pt)
+% Di-input setelah config/packages.tex dan sebelum
+% config/formatting.tex di main_buku.tex.
+%============================================================
+
+% -- Judul Isi Dokumen ----------------------------------------
+\newcommand{\FontJudulBab}{\fontsize{12}{15}\selectfont}           % BAB n + judul bab
+\newcommand{\FontJudulSubbab}{\fontsize{10}{13}\selectfont}        % 1.1 (section)
+\newcommand{\FontJudulSubSubbab}{\fontsize{10}{13}\selectfont}     % 1.1.1 (subsection)
+\newcommand{\FontJudulSubSubSubbab}{\fontsize{10}{13}\selectfont}  % tanpa nomor (subsubsection)
+\newcommand{\FontJudulDaftar}{\fontsize{12}{15}\selectfont}        % DAFTAR ISI / GAMBAR / TABEL
+\newcommand{\FontJudulHalaman}{\fontsize{12}{15}\selectfont}       % ABSTRAK, KATA PENGANTAR, LAMPIRAN
+\newcommand{\FontKutipanPanjang}{\fontsize{9}{11}\selectfont}      % lingkungan kutipanpanjang
+
+% -- Caption & Sumber Gambar/Tabel (BIMA.PENS.KP Rev.02) ------
+% Judul gambar 10pt bold, judul tabel 10pt normal: diatur di
+% config/formatting.tex lewat \captionsetup. Sumber 8pt:
+\newcommand{\FontSumber}{\fontsize{8}{10}\selectfont}              % "Sumber: ..." di bawah gambar/tabel
+
+% -- Header & Footer (pilih gaya di config/variables.tex) -----
+\newcommand{\FontHeaderFooterSimple}{\fontsize{10}{12}\selectfont} % Gaya 1: Simple
+\newcommand{\FontHeaderFooterPENS}{\fontsize{8}{10}\selectfont}    % Gaya 2: PENS
+
+% -- Cover (formats/cover_buku.tex) ---------------------------
+\newcommand{\FontCoverLabel}{\fontsize{10}{13}\selectfont}         % "KERJA PRAKTIK"
+\newcommand{\FontCoverJudul}{\fontsize{10}{13}\selectfont}         % judul KP
+\newcommand{\FontCoverIsi}{\fontsize{10}{13}\selectfont}           % nama, NRP, pembimbing, prodi
+
+% -- Halaman Judul Dalam (formats/halaman_judul.tex) ----------
+\newcommand{\FontJudulDalamLabel}{\fontsize{10}{13}\selectfont}    % "LAPORAN KERJA PRAKTIK"
+\newcommand{\FontJudulDalamJudul}{\fontsize{10}{13}\selectfont}    % judul KP
+\newcommand{\FontJudulDalamIsi}{\fontsize{10}{13}\selectfont}      % periode, nama, NRP, prodi
+
+% -- Lembar Pengesahan Internal & Instansi --------------------
+\newcommand{\FontPengesahanJudul}{\fontsize{10}{13}\selectfont}    % blok judul "LEMBAR PENGESAHAN ..."
+\newcommand{\FontPengesahanIsi}{\fontsize{10}{13}\selectfont}      % penyusun, tanda tangan, NIP

@@ -2,28 +2,34 @@
 % RUNNER: BUKU KERJA PRAKTIK
 % Compile: make buku
 %
-% Struktur halaman (semua prelim = romawi):
-%  i   Sampul (tidak ditampilkan)
-%  ii  Halaman kosong
-%  iii Halaman Judul Dalam
-%  iv  Halaman kosong
-%  v   Lembar Pengesahan Internal (PENS)
-%  vi  Halaman kosong
-%  vii Lembar Pengesahan Instansi
+% Struktur halaman (prelim = romawi, mengikuti Pasal 4.2.1):
+%  i    Sampul (nomor tidak ditampilkan)
+%  ii   Halaman kosong
+%  iii  Halaman Judul Dalam (tanpa nomor, Pasal 4.2.2 4b)
+%  iv   Halaman kosong
+%  v    Lembar Pengesahan Internal / PENS (tanpa nomor)
+%  vi   Halaman kosong
+%  vii  Lembar Pengesahan Instansi / Perusahaan (tanpa nomor)
 %  viii Halaman kosong
-%  ix  Abstrak
-%  x   Halaman kosong
-%  xi  Kata Pengantar
-%  xii Halaman kosong (jika perlu)
-%  xiii Daftar Isi
-%  ... dst (setiap konten baru mulai halaman ganjil)
-%  --- Bab 1 arabic 1
+%  ix   Abstrak (nomor mulai tampil)
+%  ...  Daftar Isi, Kata Pengantar, Daftar Gambar, Daftar Tabel,
+%       Daftar Lampiran (setiap bagian mulai halaman ganjil)
+%  ---  BAB 1: angka Arab mulai 1
 %============================================================
 
 \documentclass[10pt, a5paper, twoside, openright, fleqn]{report}
 
 \input{config/variables}
+\input{config/toggles}
+
+% -- Opsi (uncomment untuk mengaktifkan) ----------------------
+% \pengesahaninternalpdftrue  % Pakai PDF Lembar Pengesahan Internal bertanda tangan
+%                             % (pages/pengesahan_internal_ttd.pdf)
+% \pengesahaninstansipdftrue  % Pakai PDF Lembar Pengesahan Instansi bertanda tangan & stempel
+%                             % (pages/pengesahan_instansi_ttd.pdf)
+
 \input{config/packages}
+\input{config/fonts}         % ukuran font per peruntukan
 \input{config/formatting}
 \input{formats/format_buku}
 
@@ -54,12 +60,20 @@
 % -- Halaman iii: Lembar Pengesahan Internal ------------------
 % (halaman ii = blank dengan kpruler)
 \cleardoublepage
-\input{formats/pengesahan_internal}
+\ifpengesahaninternalpdf
+  \includepdf[pages=-]{\FilePengesahanInternalPDF}
+\else
+  \input{formats/pengesahan_internal}
+\fi
 
 % -- Halaman vii: Lembar Pengesahan Instansi ------------------
 % (halaman vi = blank)
 \cleardoublepage
-\input{formats/pengesahan_instansi}
+\ifpengesahaninstansipdf
+  \includepdf[pages=-]{\FilePengesahanInstansiPDF}
+\else
+  \input{formats/pengesahan_instansi}
+\fi
 
 % -- Halaman ix: Abstrak ---------------------------------------
 % (halaman viii = blank)
@@ -67,15 +81,14 @@
 \makeatletter\@mainmattertrue\makeatother
 \input{pages/abstrak}
 
-% -- Halaman xi: Kata Pengantar --------------------------------
-% (halaman x = blank)
-\cleardoublepage
-\input{pages/kata_pengantar}
-
-% -- Daftar Isi, Gambar, Tabel --------------------------------
+% -- Urutan Pasal 4.2.1: Daftar Isi, Kata Pengantar, Daftar ---
+% -- Gambar, Daftar Tabel, Daftar Lampiran ---------------------
 \cleardoublepage
 \addcontentsline{toc}{chapter}{DAFTAR ISI}
 \tableofcontents
+
+\cleardoublepage
+\input{pages/kata_pengantar}
 
 \cleardoublepage
 \begingroup
@@ -90,6 +103,8 @@
 \listoftables
 \endgroup
 \addcontentsline{toc}{chapter}{DAFTAR TABEL}
+
+\input{pages/daftar_lampiran}
 
 % -- Bab 1+: Arabic dari 1, pageanchor aktif ------------------
 \cleardoublepage
@@ -109,7 +124,7 @@
 \cleardoublepage
 \addcontentsline{toc}{chapter}{DAFTAR PUSTAKA}
 \renewcommand{\bibname}{DAFTAR PUSTAKA}
-\bibliographystyle{refs/IEEEtranN}
+\bibliographystyle{apalike} % urut abjad, nama-tahun (Pasal 4.2.2 no. 7)
 \bibliography{refs/references}
 
 % -- Lampiran -------------------------------------------------
