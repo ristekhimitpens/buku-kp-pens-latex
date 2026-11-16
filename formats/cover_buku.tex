@@ -23,7 +23,7 @@
         \vspace{0pt} % Set baseline at top
         \raggedleft
         \vspace{0.25cm}
-        \raisebox{-\height}{\color{black}\fontsize{10}{13}\bfseries\selectfont KERJA PRAKTIK}
+        \raisebox{-\height}{\color{black}\FontCoverLabel\bfseries KERJA PRAKTIK}
       \end{minipage}
       \hspace*{1.2cm}
     \end{minipage}
@@ -43,7 +43,7 @@
           \centering
           \hyphenpenalty=10000
           \exhyphenpenalty=10000
-          \fontsize{10}{13}\bfseries\selectfont
+          \FontCoverJudul\bfseries
           \MakeUppercase{\JudulKP}
         \end{minipage}
         \par
@@ -51,34 +51,34 @@
         \vfill
 
         % Blok Penulis
-        {\fontsize{10}{13}\itshape\selectfont Oleh:\par}
+        {\FontCoverIsi\itshape Oleh:\par}
         \vspace{0.2cm}
 
         \begin{tabular}{@{}p{5.5cm}l@{}}
-          \bfseries\fontsize{10}{13}\selectfont \NamaMahasiswaSatu & \bfseries\fontsize{10}{13}\selectfont NRP. \NRPSatu \\
+          \bfseries\FontCoverIsi \NamaMahasiswaSatu & \bfseries\FontCoverIsi NRP. \NRPSatu \\
           \ifcsvoid{NamaMahasiswaDua}{}{%
-          \bfseries\fontsize{10}{13}\selectfont \NamaMahasiswaDua  & \bfseries\fontsize{10}{13}\selectfont NRP. \NRPDua  \\
+          \bfseries\FontCoverIsi \NamaMahasiswaDua  & \bfseries\FontCoverIsi NRP. \NRPDua  \\
           }
           \ifcsvoid{NamaMahasiswaTiga}{}{%
-          \bfseries\fontsize{10}{13}\selectfont \NamaMahasiswaTiga & \bfseries\fontsize{10}{13}\selectfont NRP. \NRPTiga \\
+          \bfseries\FontCoverIsi \NamaMahasiswaTiga & \bfseries\FontCoverIsi NRP. \NRPTiga \\
           }
         \end{tabular}
 
         \vfill
 
         % Dosen Pembimbing
-        {\fontsize{10}{13}\itshape\selectfont Dosen Pembimbing:\par}
+        {\FontCoverIsi\itshape Dosen Pembimbing:\par}
         \vspace{0.15cm}
-        {\fontsize{10}{13}\bfseries\selectfont \NamaPembimbing\par}
-        {\fontsize{10}{13}\bfseries\selectfont NIP. \NIPPembimbing\par}
+        {\FontCoverIsi\bfseries \NamaPembimbing\par}
+        {\FontCoverIsi\bfseries NIP. \NIPPembimbing\par}
 
         \vfill
 
         % Footer: institusi
-        {\fontsize{10}{13}\bfseries\selectfont \MakeUppercase{\JenjangProdi} \MakeUppercase{\NamaProdi}\par}
-        {\fontsize{10}{13}\bfseries\selectfont \MakeUppercase{\NamaDepartemen}\par}
-        {\fontsize{10}{13}\bfseries\selectfont POLITEKNIK ELEKTRONIKA NEGERI SURABAYA\par}
-        {\fontsize{10}{13}\bfseries\selectfont \TahunKP\par}
+        {\FontCoverIsi\bfseries \MakeUppercase{\JenjangProdi} \MakeUppercase{\NamaProdi}\par}
+        {\FontCoverIsi\bfseries \MakeUppercase{\NamaDepartemen}\par}
+        {\FontCoverIsi\bfseries POLITEKNIK ELEKTRONIKA NEGERI SURABAYA\par}
+        {\FontCoverIsi\bfseries \TahunKP\par}
         \vspace{1.5cm}
 
       \end{center}

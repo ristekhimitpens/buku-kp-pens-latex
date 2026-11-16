@@ -1,36 +1,42 @@
 %============================================================
 % HALAMAN ABSTRAK  (ringkasan dalam Bahasa Indonesia)
-% Isi: latar belakang, tujuan KP, kegiatan yang dilakukan,
-%      hasil, dan manfaat yang diperoleh.
+% Pedoman KP Pasal 4.2.1 (iv): 150-200 kata, maksimal satu
+% halaman, 1,5 spasi. Isi: apa yang dikerjakan, metodologi,
+% hasil yang dicapai; jika menyangkut program, sebutkan
+% platform dan development tool yang dipakai.
 %============================================================
 \cleardoublepage
 \phantomsection
 \addcontentsline{toc}{chapter}{ABSTRAK}
 \begin{center}
-  {\fontsize{12}{15}\bfseries ABSTRAK\par}
+  {\FontJudulHalaman\bfseries ABSTRAK\par}
 \end{center}
 \vspace{12pt}
+% Spasi 1,5 memakai \setstretch{1.5} (lewat lingkungan spacing),
+% sama seperti Buku PA. \onehalfspacing / onehalfspace jauh lebih
+% rapat dari spasi 1,5 MS Word, jadi tidak dipakai.
+\begin{spacing}{1.5}
 
-Laporan ini membahas pelaksanaan Kerja Praktik yang dilakukan di PT. Sinergi Dimensi
-Informatika (SINDIKA), dengan fokus pada pengembangan sistem monitoring infrastruktur
-kelistrikan `Voltra' dan library backend Nedo.AspNet.Request.Validation. Penulis terlibat
-langsung dalam implementasi logika bisnis pemantauan aset kelistrikan pada sistem Voltra,
-mencakup kalkulasi Health Index, Critical Index, dan Risk Index sebagai dasar klasifikasi
-status aset (Good, Warning, Critical). Selain itu, penulis juga mengembangkan fitur
-manajemen tiket insiden yang terintegrasi dengan mekanisme auto-close berbasis event,
-modul analitik finansial untuk perhitungan cost avoidance dan risk cost projection,
-evaluasi keusangan aset (obsolescence) beserta prediksi Remaining Useful Life (RUL),
-serta sistem pelaporan otomatis berbasis PDF. Sistem Voltra dibangun menggunakan pendekatan arsitektur microservices dengan RabbitMQ
-sebagai message broker untuk komunikasi asinkron, MQTT untuk ingesti data sensor dari
-perangkat lapangan, Redis sebagai cache dan pub/sub engine, serta kombinasi InfluxDB dan
-PostgreSQL untuk penyimpanan data time-series dan relasional. Di luar pengembangan Voltra,
-penulis turut merancang dan mengembangkan library Nedo.AspNet.Request.Validation, sebuah
-pustaka validasi input berbasis attribute untuk aplikasi ASP.NET Core yang bertujuan
-menyediakan mekanisme validasi terpusat, konsisten, dan dapat digunakan kembali di seluruh
-ekosistem backend SINDIKA, lengkap dengan standarisasi kode error dan dukungan multi-bahasa
-(localization) pada respons validasi API. Melalui pendekatan profesional dan kolaboratif selama kerja praktik, kegiatan ini memberikan
-pemahaman mendalam mengenai penerapan arsitektur microservices, komunikasi asinkron, serta
-praktik pengembangan library internal dalam skenario industri nyata.
+Laporan ini membahas pelaksanaan Kerja Praktik di PT. Sinergi Dimensi Informatika
+(SINDIKA) yang berfokus pada pengembangan sistem monitoring infrastruktur kelistrikan
+`Voltra' dan library backend Nedo.AspNet.Request.Validation. Pada sistem Voltra, penulis
+mengimplementasikan kalkulasi Health Index, Critical Index, dan Risk Index untuk
+klasifikasi status aset, manajemen tiket insiden dengan auto-close berbasis event, analitik
+finansial (cost avoidance dan risk cost projection), evaluasi keusangan aset beserta
+prediksi Remaining Useful Life (RUL), serta pelaporan otomatis berbasis PDF. Sistem
+dibangun dengan arsitektur microservices menggunakan RabbitMQ sebagai message broker, MQTT
+untuk ingesti data sensor, Redis sebagai cache dan pub/sub, serta InfluxDB dan PostgreSQL
+untuk data time-series dan relasional. Penulis juga mengembangkan
+Nedo.AspNet.Request.Validation, library validasi input berbasis attribute untuk ASP.NET
+Core yang menyediakan validasi terpusat dan konsisten, standarisasi kode error, serta
+dukungan multi-bahasa pada respons API. Pengembangan dilakukan secara iteratif bersama tim
+melalui alur kerja Git, code review, dan pengujian fungsional. Kegiatan ini memberikan pemahaman mendalam mengenai
+penerapan arsitektur microservices, komunikasi asinkron, dan pengembangan library internal
+dalam skenario industri nyata.
 
-\vspace{0.8cm}
-\noindent\textbf{Kata Kunci:} Voltra, Microservices, RabbitMQ, MQTT, Health Index, Risk Index, Library Validation, ASP.NET Core, Predictive Maintenance
+\end{spacing}
+
+\vspace{0.5cm}
+\noindent\textbf{Kata Kunci}
+
+\noindent Voltra, Microservices, RabbitMQ, MQTT, Health Index, Risk Index, Library Validation, ASP.NET Core, Predictive Maintenance

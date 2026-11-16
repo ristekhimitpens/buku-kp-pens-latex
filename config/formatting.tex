@@ -51,14 +51,14 @@
 \makeatother
 
 % -- Format Judul Bab -----------------------------------------
-\renewcommand{\thechapter}{\Roman{chapter}}
+% Nomor bab angka Arab: BAB 1, BAB 2, ... (Pasal 4.2.2 no. 3b)
 \renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
 
 % Mulai dari batas margin atas (spacing before = 0pt)
 % Judul bab 1 spasi (12pt) di bawah tulisan BAB
 % Kalimat awal mulai 2 spasi (24pt) di bawah judul bab
 \titleformat{\chapter}[display]
-{\centering\fontsize{12}{15}\bfseries}
+{\centering\FontJudulBab\bfseries}
 {\MakeUppercase{\chaptertitlename} \thechapter}
 {0pt}
 {\MakeUppercase}
@@ -78,7 +78,7 @@
 
 % -- Format Judul Subbab (Section) ----------------------------
 \titleformat{\section}
-{\fontsize{10}{13}\bfseries}
+{\FontJudulSubbab\bfseries}
 {\thesection}
 {1em}
 {}
@@ -87,7 +87,7 @@
 
 % -- Format Judul Sub-subbab (Subsection) ---------------------
 \titleformat{\subsection}
-{\fontsize{10}{13}\bfseries}
+{\FontJudulSubSubbab\bfseries}
 {\thesubsection}
 {1em}
 {}
@@ -95,9 +95,9 @@
 \titlespacing*{\subsection}{0pt}{8pt}{3pt}
 
 % -- Format Judul Sub-sub-subbab (Subsubsection) --------------
-% Tanpa nomor (secnumdepth=2) — heading ringan, label dikosongkan.
+% Tanpa nomor (secnumdepth=2) - heading ringan, label dikosongkan.
 \titleformat{\subsubsection}
-{\fontsize{10}{13}\bfseries}
+{\FontJudulSubSubSubbab\bfseries}
 {}
 {0pt}
 {}
@@ -108,27 +108,38 @@
 \setcounter{secnumdepth}{2}
 \setcounter{tocdepth}{2}
 
-% -- Caption Gambar -------------------------------------------
+% -- Caption Gambar (Pasal 4.2.2 no. 6) -----------------------
+% "Gambar 2.1: Judul gambar", label & judul bold (contoh pedoman
+% hal. 26), di bawah gambar, menjorok 1 cm dari margin kiri-kanan,
+% baris lanjutan sejajar judul. Sumber 8pt ditulis setelah caption.
 \captionsetup[figure]{
-  labelfont     = {bf},
-  textfont      = {bf},
-  font          = {normalsize},
-  justification = centering,
-  skip          = 12pt, % Jarak 1 spasi
-  name          = Gambar,
-  labelsep      = space
+  labelfont       = {bf},
+  textfont        = {bf},
+  font            = {normalsize},     % 10pt
+  format          = hang,             % baris ke-2 sejajar judul (6c)
+  justification   = raggedright,
+  singlelinecheck = false,
+  margin          = 1cm,              % menjorok 1 cm kiri-kanan (6b)
+  skip            = 12pt,             % jarak 1 spasi (6i)
+  name            = Gambar,
+  labelsep        = colon             % "Gambar 2.1:"
 }
 
-% -- Caption Tabel --------------------------------------------
+% -- Caption Tabel (Pasal 4.2.2 no. 5) ------------------------
+% "Tabel 2.1:" bold, judul 10pt normal, di atas tabel, menjorok
+% 1 cm dari margin kiri-kanan, baris lanjutan sejajar judul.
 \captionsetup[table]{
-  labelfont     = {bf},
-  textfont      = {bf},
-  font          = {normalsize},
-  justification = centering,
-  skip          = 12pt, % Jarak 1 spasi
-  position      = above,
-  name          = Tabel,
-  labelsep      = space
+  labelfont       = {bf},             % "Tabel 2.1:" bold (5b)
+  textfont        = {},               % judul 10pt normal (5e)
+  font            = {normalsize},
+  format          = hang,             % baris ke-2 sejajar judul (5c)
+  justification   = raggedright,
+  singlelinecheck = false,
+  margin          = 1cm,              % menjorok 1 cm kiri-kanan (5b)
+  skip            = 12pt,             % jarak 1 spasi (5i)
+  position        = above,
+  name            = Tabel,
+  labelsep        = colon             % "Tabel 2.1:"
 }
 \renewcommand{\tablename}{Tabel}
 
@@ -145,11 +156,18 @@
   rowhead = 1,
 }
 
+% -- Isi Tabel: lebih kecil (\small, +-9pt), spasi 1 ----------
+% Berlaku otomatis untuk semua tblr/longtblr. Caption tidak terpengaruh.
+\AddToHook{env/tblr/begin}{\small\linespread{1}\selectfont}
+\AddToHook{env/longtblr/begin}{\small\linespread{1}\selectfont}
+
 % -- Kustomisasi Khusus longtblr ------------------------------
-\DefTblrTemplate{caption-sep}{default}{\space}
-\SetTblrStyle{caption-tag}{font=\small\itshape}
-\SetTblrStyle{caption-text}{font=\small\itshape}
-\SetTblrStyle{caption-halign}{c}
+% Caption longtblr disamakan dengan tabel biasa: "Tabel 2.1:" bold,
+% judul 10pt normal, rata kiri.
+\DefTblrTemplate{caption-sep}{default}{:\space}
+\SetTblrStyle{caption-tag}{font=\normalsize\bfseries}
+\SetTblrStyle{caption-text}{font=\normalsize}
+\SetTblrStyle{caption-halign}{l}
 
 \DefTblrTemplate{contfoot-text}{default}{}
 \DefTblrTemplate{conthead-text}{default}{}
@@ -170,22 +188,37 @@
 \renewcommand{\headrulewidth}{0pt}
 
 
+% Logo PENS untuk header Gaya 2 (diukur sekali agar lebar teks di
+% sebelahnya bisa dihitung)
+\newsavebox{\KotakLogoHeader}
+\sbox{\KotakLogoHeader}{\includegraphics[height=1.0cm]{assets/pens/logo_pens.png}}
+
 % Pagestyle kpruler dengan 2 macam gaya (Simple & PENS)
 \fancypagestyle{kpruler}{
   \fancyhf{}
   \ifnum\StyleHeaderFooter=2
     % Gaya 2: PENS (Gambar 2)
-    \fancyhead[LO,LE]{\raisebox{-0.2cm}{\includegraphics[height=1.0cm]{assets/pens/logo_pens.png}}}
-    \fancyhead[C]{\raisebox{1.5mm}{\fontsize{8}{10}\selectfont POLITEKNIK ELEKTRONIKA NEGERI SURABAYA}\rule[-3mm]{0pt}{0pt}}
+    % Nama laporan & perusahaan dipindah ke header (baris ke-2) agar
+    % nomor halaman bisa di bawah tengah (Pasal 4.2.2 no. 4c).
+    % Logo di kiri, teks di ruang SISA sebelah kanan logo (rata tengah
+    % di ruang itu) agar teks tidak menimpa logo. Baris yang terlalu
+    % panjang otomatis dikecilkan (\fitline). Nama perusahaan di header memakai
+    % \NamaPerusahaanSingkat (config/variables.tex) agar ringkas.
+    \fancyhead[LO,LE]{%
+      \raisebox{-0.2cm}{\usebox{\KotakLogoHeader}}\hspace{2mm}%
+      \parbox[b]{\dimexpr\headwidth-\wd\KotakLogoHeader-2mm\relax}{%
+        \centering\FontHeaderFooterPENS
+        \fitline{\linewidth}{POLITEKNIK ELEKTRONIKA NEGERI SURABAYA}\\
+        \fitline{\linewidth}{LAPORAN KERJA PRAKTIK~-~\MakeUppercase{\ifcsvoid{NamaPerusahaanSingkat}{\NamaPerusahaan}{\NamaPerusahaanSingkat}}}%
+        \rule[-3mm]{0pt}{0pt}}}
     \renewcommand{\headrulewidth}{1.5pt}
-    \fancyfoot[LO,LE]{\fontsize{8}{10}\selectfont LAPORAN KERJA PRAKTIK~-~\MakeUppercase{\NamaPerusahaan}}
-    \fancyfoot[RO,RE]{\fontsize{8}{10}\selectfont\thepage}
+    \fancyfoot[C]{\FontHeaderFooterPENS\thepage}
     \renewcommand{\footrulewidth}{1.5pt}
   \else
     % Gaya 1: Simple (Gambar 1)
-    \fancyhead[C]{\fontsize{10}{12}\bfseries\selectfont LAPORAN KERJA PRAKTIK\rule[-3mm]{0pt}{0pt}}
+    \fancyhead[C]{\FontHeaderFooterSimple\bfseries LAPORAN KERJA PRAKTIK\rule[-3mm]{0pt}{0pt}}
     \renewcommand{\headrulewidth}{1.5pt}
-    \fancyfoot[C]{\fontsize{10}{12}\selectfont\thepage}
+    \fancyfoot[C]{\FontHeaderFooterSimple\thepage}
     \renewcommand{\footrulewidth}{1.5pt}
   \fi
 }
@@ -204,7 +237,7 @@
       \setlength{\itemsep}{0pt}
       \setlength{\parsep}{0pt}
     }
-    \item\fontsize{9}{11}\selectfont\ignorespaces
+    \item\FontKutipanPanjang\ignorespaces
     }{%
     \unskip
   \end{list}
@@ -230,13 +263,13 @@
 \renewcommand{\chaptername}{BAB}
 
 % -- Judul Daftar Isi/Gambar/Tabel: 12pt, Bold, Center --------
-\renewcommand{\cfttoctitlefont}{\hfill\fontsize{12}{15}\bfseries\MakeUppercase}
+\renewcommand{\cfttoctitlefont}{\hfill\FontJudulDaftar\bfseries\MakeUppercase}
 \renewcommand{\cftaftertoctitle}{\hfill\null}
 
-\renewcommand{\cftloftitlefont}{\hfill\fontsize{12}{15}\bfseries\MakeUppercase}
+\renewcommand{\cftloftitlefont}{\hfill\FontJudulDaftar\bfseries\MakeUppercase}
 \renewcommand{\cftafterloftitle}{\hfill\null}
 
-\renewcommand{\cftlottitlefont}{\hfill\fontsize{12}{15}\bfseries\MakeUppercase}
+\renewcommand{\cftlottitlefont}{\hfill\FontJudulDaftar\bfseries\MakeUppercase}
 \renewcommand{\cftafterlottitle}{\hfill\null}
 
 \setlength{\cftbeforetoctitleskip}{0pt}
@@ -287,6 +320,14 @@
 \setlength{\textfloatsep}{10pt}
 
 \setlength{\bibsep}{3pt}
+
+% -- Baris Yatim/Janda ----------------------------------------
+% (Hyphenation sudah dinonaktifkan di bagian atas file ini.)
+% Cegah satu baris paragraf tertinggal sendirian di bawah halaman
+% (club/yatim) atau di atas halaman berikutnya (widow/janda).
+\clubpenalty=10000
+\widowpenalty=10000
+\displaywidowpenalty=10000
 
 % -- Halaman Kosong -------------------------------------------
 % Halaman kosong pada cetak bolak-balik diberi keterangan

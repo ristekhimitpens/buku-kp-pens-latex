@@ -3,6 +3,8 @@
 #
 # Usage:
 #   make buku      -> kompilasi Buku KP
+#   make watch     -> compile ulang otomatis setiap file disimpan
+#                     (hentikan dengan Ctrl+C; PDF ada di build/main_buku.pdf)
 #   make clean     -> hapus folder build/ (aux sementara)
 #   make cleanall  -> hapus build/ + output/
 #============================================================
@@ -15,7 +17,7 @@ NAMA := $(shell awk -F'[{}]' '/\\NamaMahasiswaSatu/ {gsub(/ /, "_", $$4); print 
 NRP  := $(shell awk -F'[{}]' '/\\NRPSatu/ {print $$4}' config/variables.tex)
 DATETIME := $(shell date +%Y%m%d_%H%M%S)
 
-.PHONY: all buku clean cleanall
+.PHONY: all buku watch clean cleanall
 
 all: buku
 
@@ -26,6 +28,10 @@ buku:
 	@rm -f main_buku.fdb_latexmk main_buku.fls
 	@cp $(BUILD)/main_buku.pdf "$(OUTPUT)/Buku_KP_$(NAMA)_$(NRP)_$(DATETIME).pdf"
 	@echo "==> Output: $(OUTPUT)/Buku_KP_$(NAMA)_$(NRP)_$(DATETIME).pdf"
+
+watch:
+	@echo "==> Watch main_buku.tex (Ctrl+C untuk berhenti). PDF: $(BUILD)/main_buku.pdf"
+	latexmk -pdf -pvc -view=none main_buku.tex
 
 clean:
 	@rm -rf $(BUILD)
